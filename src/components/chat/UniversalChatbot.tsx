@@ -27,7 +27,7 @@ import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { cn } from '@/lib/utils'
 import { api } from '@/lib/api'
-import { KNOWLEDGE_BASE_DATASET, answerGeneralOrSpecificQuestion } from './chatbotDataset'
+import { KNOWLEDGE_BASE_DATASET, answerGeneralOrSpecificQuestion, isHinglishQuery } from './chatbotDataset'
 
 interface ChatMessage {
   id: string
@@ -40,6 +40,7 @@ interface ChatMessage {
 
 const QUICK_CATEGORIES = [
   { id: 'all', label: 'All Knowledge', icon: Sparkles },
+  { id: 'hinglish', label: 'हिं Hinglish Help', icon: MessageSquare },
   { id: 'general', label: 'Day-to-Day & General', icon: Globe },
   { id: 'cyber', label: 'Cyber Defense & Scams', icon: Shield },
   { id: 'legal', label: 'Legal & CrPC / BNS', icon: BookOpen },
@@ -50,9 +51,16 @@ const QUICK_CATEGORIES = [
 const SAMPLE_QUESTIONS: Record<string, string[]> = {
   all: [
     'How do I report financial fraud on 1930?',
+    'Mere account se paise cut gaye, kya karu?',
     'Explain how Graph Neural Networks detect mule accounts',
-    'How can I improve my daily focus and productivity?',
     'What is Section 91 CrPC notice for bank freezing?',
+  ],
+  hinglish: [
+    'Mere account se paise kat gaye, turant kya karu?',
+    'Digital arrest scam kya hai aur isse kaise bache?',
+    '1930 helpline pe call karke complaint kaise karein?',
+    'UPI QR code scan karne se paise aate hain ya katte hain?',
+    'Bank ya police video call par arrest kar sakti hai kya?',
   ],
   general: [
     'How can I build a healthy daily morning routine?',
@@ -91,13 +99,14 @@ export const UniversalChatbot: React.FC = () => {
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [activeCategory, setActiveCategory] = useState('all')
+  const [languageMode, setLanguageMode] = useState<'auto' | 'en' | 'hinglish'>('auto')
   const [copiedId, setCopiedId] = useState<string | null>(null)
   const [voiceEnabled, setVoiceEnabled] = useState(false)
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: 'welcome-msg',
       sender: 'bot',
-      text: `👋 Greetings! I am **GAURDIAN Sovereign AI Assistant & Knowledge Engine**.\n\nI am equipped with a comprehensive knowledge base covering:\n• **Day-to-day life, general science, math, productivity, cooking & everyday assistance**\n• **Cybersecurity, scam mitigation, 1930 National Portal recovery & digital safety**\n• **Indian Legal framework (CrPC § 91, BNS 2023, IT Act 2000, RBI KYC directives)**\n• **Banking forensics, GNN mule graph analysis & ATM prediction heuristics**\n• **Software engineering, coding, physics & general question answering**\n\nHow can I help you today? Feel free to ask anything!`,
+      text: `👋 Greetings! I am **GUARDIAN Sovereign AI Assistant & Knowledge Engine**.\n\nNow equipped with **Bilingual Intelligence (English + Hinglish)**! You can chat with me in English or naturally in Hinglish (हिंदी / English mix).\n\n• **Day-to-day life, general science, math, productivity & everyday advice**\n• **Cybersecurity, scam mitigation, 1930 National Portal recovery & digital safety**\n• **Indian Legal framework (CrPC § 91, BNS 2023, IT Act 2000, RBI KYC directives)**\n• **Banking forensics, GNN mule graph analysis & ATM prediction heuristics**\n\nHow can I help you today? Feel free to ask anything in English or Hinglish!`,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       latencyMs: 18,
     },
@@ -126,7 +135,7 @@ export const UniversalChatbot: React.FC = () => {
       {
         id: `cleared-${Date.now()}`,
         sender: 'bot',
-        text: 'Session history cleared. How can I assist you further?',
+        text: 'Session history cleared. How can I assist you further? (English / Hinglish)',
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       },
     ])
@@ -135,9 +144,33 @@ export const UniversalChatbot: React.FC = () => {
   const speakText = (text: string) => {
     if (!('speechSynthesis' in window) || !voiceEnabled) return
     window.speechSynthesis.cancel()
-    const cleanText = text.replace(/[*#_`]/g, '').slice(0, 300)
+    const cleanText = text.replace(/[*#_`$]/g, '').slice(0, 350)
     const utterance = new SpeechSynthesisUtterance(cleanText)
-    utterance.rate = 1.05
+
+    const isHinglish = languageMode === 'hinglish' || isHinglishQuery(text)
+    const voices = window.speechSynthesis.getVoices()
+    if (isHinglish) {
+      // Find an Indian English or Hindi voice for natural cadence
+      const indianVoice = voices.find(
+        (v) =>
+          v.lang === 'hi-IN' ||
+          v.lang.startsWith('hi') ||
+          v.lang === 'en-IN' ||
+          v.name.toLowerCase().includes('india') ||
+          v.name.toLowerCase().includes('hindi')
+      )
+      if (indianVoice) {
+        utterance.voice = indianVoice
+        utterance.lang = indianVoice.lang
+      } else {
+        utterance.lang = 'hi-IN'
+      }
+      utterance.rate = 1.0
+    } else {
+      const enVoice = voices.find((v) => v.lang.startsWith('en'))
+      if (enVoice) utterance.voice = enVoice
+      utterance.rate = 1.05
+    }
     utterance.pitch = 1.0
     window.speechSynthesis.speak(utterance)
   }
@@ -173,15 +206,15 @@ export const UniversalChatbot: React.FC = () => {
           !textToSend.toLowerCase().includes('mule')
         ) {
           // Use our comprehensive multi-domain dataset for diverse everyday questions!
-          answer = answerGeneralOrSpecificQuestion(textToSend)
+          answer = answerGeneralOrSpecificQuestion(textToSend, languageMode)
         } else {
           answer = liveRes.response
         }
       } else {
-        answer = answerGeneralOrSpecificQuestion(textToSend)
+        answer = answerGeneralOrSpecificQuestion(textToSend, languageMode)
       }
     } catch {
-      answer = answerGeneralOrSpecificQuestion(textToSend)
+      answer = answerGeneralOrSpecificQuestion(textToSend, languageMode)
     }
 
     const latency = Math.round(performance.now() - startTime) + 35
@@ -252,17 +285,56 @@ export const UniversalChatbot: React.FC = () => {
                   <div>
                     <div className="flex items-center gap-2">
                       <h3 className="font-sans text-sm font-bold text-white tracking-tight">
-                        GAURDIAN Universal AI Copilot
+                        GUARDIAN Universal AI Copilot
                       </h3>
                       <Badge variant="live">EXPANDED DATASET</Badge>
                     </div>
                     <span className="text-[11px] font-mono text-[#9b9b9b]">
-                      MULTI-DOMAIN INTELLIGENCE · LAW · SCAMS · DAY-TO-DAY · TECH
+                      MULTI-DOMAIN INTELLIGENCE · HINGLISH · LAW · SCAMS
                     </span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  {/* Language Mode Selector (English / Hinglish / Auto) */}
+                  <div className="flex items-center rounded-btn border border-[#636363]/60 p-0.5 bg-[#090b0d] text-[11px] font-mono mr-1">
+                    <button
+                      onClick={() => setLanguageMode('en')}
+                      className={cn(
+                        'px-2 py-0.5 rounded-btn transition-colors',
+                        languageMode === 'en'
+                          ? 'bg-white text-black font-semibold'
+                          : 'text-[#9b9b9b] hover:text-white'
+                      )}
+                      title="Speak English"
+                    >
+                      EN
+                    </button>
+                    <button
+                      onClick={() => setLanguageMode('hinglish')}
+                      className={cn(
+                        'px-2 py-0.5 rounded-btn transition-colors',
+                        languageMode === 'hinglish'
+                          ? 'bg-[#2b5945] text-white font-semibold'
+                          : 'text-[#9b9b9b] hover:text-white'
+                      )}
+                      title="Speak Hinglish (Hindi + English)"
+                    >
+                      हिं Hinglish
+                    </button>
+                    <button
+                      onClick={() => setLanguageMode('auto')}
+                      className={cn(
+                        'px-1.5 py-0.5 rounded-btn transition-colors',
+                        languageMode === 'auto'
+                          ? 'bg-[#38d39f]/25 text-[#38d39f] font-semibold border border-[#38d39f]/40'
+                          : 'text-[#9b9b9b] hover:text-white'
+                      )}
+                      title="Auto-detect English / Hinglish"
+                    >
+                      Auto
+                    </button>
+                  </div>
                   <button
                     onClick={() => setVoiceEnabled(!voiceEnabled)}
                     className={cn(

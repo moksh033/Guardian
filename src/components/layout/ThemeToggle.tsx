@@ -18,8 +18,8 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ showLabel = false, cla
       className={cn(
         'group relative flex items-center justify-center transition-all duration-200 active:scale-95',
         showLabel
-          ? 'h-9 px-3 gap-2 rounded-btn bg-[#121417] dark:bg-[#121417] border border-[#636363]/60 hover:border-white dark:hover:border-white text-[#c0c9c2] hover:text-white'
-          : 'w-9 h-9 rounded-btn bg-[#121417] dark:bg-[#121417] border border-[#636363] hover:border-white dark:hover:border-white text-[#c0c9c2] hover:text-white',
+          ? 'h-9 px-3 gap-2 rounded-btn bg-white dark:bg-[#121417] border border-slate-300 dark:border-[#636363]/60 hover:border-slate-800 dark:hover:border-white text-slate-700 dark:text-[#c0c9c2] hover:text-slate-950 dark:hover:text-white shadow-sm'
+          : 'w-9 h-9 rounded-btn bg-white dark:bg-[#121417] border border-slate-300 dark:border-[#636363] hover:border-slate-800 dark:hover:border-white text-slate-700 dark:text-[#c0c9c2] hover:text-slate-950 dark:hover:text-white shadow-sm',
         className
       )}
       aria-label={`Switch to ${isLight ? 'Dark' : 'Light'} Mode`}

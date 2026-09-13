@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react'
-import { createPortal } from 'react-dom'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import { MapPin, Crosshair, Navigation, ExternalLink, Globe, Layers, Eye, Plus, Minus, Key, X, CheckCircle2, Shield, Maximize2, Minimize2 } from 'lucide-react'
+import { MapPin, Crosshair, Navigation, ExternalLink, Globe, Layers, Eye, Plus, Minus, Maximize2, Minimize2 } from 'lucide-react'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { useDemoStore } from '@/store/demoStore'
@@ -175,11 +174,9 @@ export const ThreatMap: React.FC = () => {
   const [selectedAtm, setSelectedAtm] = useState<AtmThreatData>(ATM_CLUSTERS[0])
   const [mapStyle, setMapStyle] = useState<MapStyle>('dark')
   const [isFullScreen, setIsFullScreen] = useState<boolean>(false)
-  const [cartoApiKey, setCartoApiKey] = useState<string>(() => {
+  const [cartoApiKey] = useState<string>(() => {
     return localStorage.getItem('cybercell_carto_key') || ''
   })
-  const [inputKey, setInputKey] = useState<string>(cartoApiKey)
-  const [showKeyModal, setShowKeyModal] = useState<boolean>(false)
   const { patrolDispatched, dispatchPatrol, dispatchedPatrols, isDemoRunning } = useDemoStore()
   const intelligence = useCaseStore((state) => state.intelligence)
 
@@ -414,25 +411,6 @@ export const ThreatMap: React.FC = () => {
     mapInstanceRef.current?.zoomOut()
   }
 
-  const handleSaveKey = (e: React.FormEvent) => {
-    e.preventDefault()
-    const trimmed = inputKey.trim()
-    setCartoApiKey(trimmed)
-    if (trimmed) {
-      localStorage.setItem('cybercell_carto_key', trimmed)
-    } else {
-      localStorage.removeItem('cybercell_carto_key')
-    }
-    setShowKeyModal(false)
-  }
-
-  const handleResetToDefault = () => {
-    setInputKey('')
-    setCartoApiKey('')
-    localStorage.removeItem('cybercell_carto_key')
-    setShowKeyModal(false)
-  }
-
   return (
     <div
       data-impeccable-ignore="true"
@@ -504,15 +482,6 @@ export const ThreatMap: React.FC = () => {
               <Layers className="w-3 h-3" />
               Street Grid
             </span>
-          </button>
-
-          <button
-            onClick={() => setShowKeyModal(true)}
-            className="px-2 py-1 rounded-btn text-xs font-sans text-[#c0c9c2] border border-[#636363]/40 hover:border-white hover:text-white transition-colors flex items-center gap-1 ml-1"
-            title="Configure Map API Keys"
-          >
-            <Key className="w-3 h-3 text-[#a0d1b8]" />
-            <span className="hidden md:inline">API Keys</span>
           </button>
 
           {/* Dedicated Fullscreen Toggle Button */}
@@ -660,101 +629,7 @@ export const ThreatMap: React.FC = () => {
         </div>
       )}
 
-      {/* Map Provider & API Key Modal via Portal */}
-      {showKeyModal && typeof document !== 'undefined' && createPortal(
-        <div className="fixed inset-0 z-[9999] bg-black/85 flex items-center justify-center p-4 backdrop-blur-sm">
-          <div className="w-full max-w-lg bg-[#121417] border border-[#636363] rounded-card p-6 text-white shadow-2xl">
-            <div className="flex items-center justify-between pb-3 border-b border-[#636363]/60 mb-4">
-              <div className="flex items-center gap-2">
-                <Key className="w-4 h-4 text-[#a0d1b8]" />
-                <h3 className="font-sans text-sm font-semibold text-white">Map Provider & API Key Setup</h3>
-              </div>
-              <button
-                onClick={() => setShowKeyModal(false)}
-                className="text-[#9b9b9b] hover:text-white transition-colors"
-                aria-label="Close"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
 
-            <div className="space-y-4 text-xs font-sans">
-              {/* Default Active Engine Status */}
-              <div className="p-3 border-l-2 border-[#a0d1b8] bg-black/40 backdrop-blur-sm flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#a0d1b8] shrink-0 mt-0.5" />
-                <div>
-                  <div className="font-semibold text-white">Zero-Watermark Engine Active (No Key Required)</div>
-                  <div className="text-[#c0c9c2] mt-1 leading-relaxed">
-                    By default, the platform uses Esri World Imagery (Satellite) and Esri Dark Gray Canvas. Both are 100% public, photorealistic, require NO API key, and have zero commercial retail clutter (no cafes, spas, or shops).
-                  </div>
-                </div>
-              </div>
-
-              {/* How to get CARTO API Key */}
-              <div className="space-y-2">
-                <div className="font-semibold text-white flex items-center gap-1.5">
-                  <Shield className="w-3.5 h-3.5 text-[#a0d1b8]" />
-                  How to get a Free CARTO API Key (Optional)
-                </div>
-                <ol className="list-decimal list-inside space-y-1 text-[#c0c9c2] pl-1 leading-relaxed">
-                  <li>Visit <a href="https://carto.com" target="_blank" rel="noopener noreferrer" className="text-[#a0d1b8] underline">carto.com</a> and create a free developer trial account.</li>
-                  <li>In your CARTO Workspace, click your profile icon in the top right and select <strong className="text-white">Developer Settings</strong>.</li>
-                  <li>Navigate to the <strong className="text-white">API Keys</strong> section and copy your <strong className="text-white">Default Public API Key</strong>.</li>
-                  <li>Paste the key below or add it to your project root as <code className="font-mono text-[#a0d1b8]">VITE_CARTO_API_KEY</code>.</li>
-                </ol>
-              </div>
-
-              {/* Input Form */}
-              <form onSubmit={handleSaveKey} className="space-y-3 pt-2">
-                <div>
-                  <label htmlFor="carto-key-input" className="block text-xs font-mono text-[#9b9b9b] mb-1">
-                    CARTO API KEY (Optional):
-                  </label>
-                  <input
-                    id="carto-key-input"
-                    type="text"
-                    value={inputKey}
-                    onChange={(e) => setInputKey(e.target.value)}
-                    placeholder="e.g. default_public or your_carto_api_key"
-                    className="w-full bg-black border border-[#636363] rounded-btn px-3 py-2 text-xs font-mono text-white placeholder:text-[#636363] focus:border-white focus:outline-none"
-                  />
-                </div>
-
-                <div className="flex items-center justify-between pt-2">
-                  <button
-                    type="button"
-                    onClick={handleResetToDefault}
-                    className="text-xs text-[#9b9b9b] hover:text-white underline transition-colors"
-                  >
-                    Reset to Default (Esri HD)
-                  </button>
-
-                  <div className="flex items-center gap-2">
-                    <Button
-                      type="button"
-                      variant="secondary"
-                      size="sm"
-                      onClick={() => setShowKeyModal(false)}
-                      className="text-xs"
-                    >
-                      Cancel
-                    </Button>
-                    <Button
-                      type="submit"
-                      variant="palantir"
-                      size="sm"
-                      className="text-xs font-mono font-semibold"
-                    >
-                      Apply Key
-                    </Button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>,
-        document.body
-      )}
     </div>
   )
 }

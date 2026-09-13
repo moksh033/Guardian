@@ -9,29 +9,29 @@ export default {
     extend: {
       colors: {
         // Palantir Background & Surface Tiers
-        background: '#1e2124',
-        surface: '#000000',
-        'surface-card': '#121417',
-        'surface-elevated': '#16181c',
-        'surface-hover': '#2f3234',
-        'surface-active': '#383b3e',
+        background: 'var(--background, #1e2124)',
+        surface: 'var(--surface, #000000)',
+        'surface-card': 'var(--surface-card, #121417)',
+        'surface-elevated': 'var(--surface-elevated, #16181c)',
+        'surface-hover': 'var(--surface-hover, #2f3234)',
+        'surface-active': 'var(--surface-active, #383b3e)',
 
         // Legacy void mappings for backward compatibility
-        void: '#1e2124',
-        'void-elevated': '#000000',
-        'void-hover': '#2f3234',
+        void: 'var(--background, #1e2124)',
+        'void-elevated': 'var(--surface, #000000)',
+        'void-hover': 'var(--surface-hover, #2f3234)',
 
         // Palantir Precision Borders
-        border: '#636363',
-        'border-subtle': 'rgba(255, 255, 255, 0.12)',
-        'border-medium': '#636363',
-        'border-accent': '#2b5945',
+        border: 'var(--border-color, #636363)',
+        'border-subtle': 'var(--border-subtle, rgba(255, 255, 255, 0.12))',
+        'border-medium': 'var(--border-color, #636363)',
+        'border-accent': 'var(--accent-color, #2b5945)',
 
         // Palantir Typography Hierarchy
-        'text-primary': '#ffffff',
-        'text-secondary': '#c0c9c2',
-        'text-muted': '#9b9b9b',
-        'text-faint': '#636363',
+        'text-primary': 'var(--text-primary, #ffffff)',
+        'text-secondary': 'var(--text-secondary, #c0c9c2)',
+        'text-muted': 'var(--text-muted, #9b9b9b)',
+        'text-faint': 'var(--text-faint, #636363)',
 
         // Palantir Accents
         accent: {

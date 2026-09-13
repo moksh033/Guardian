@@ -65,7 +65,7 @@ export const AuthModal: React.FC = () => {
     setSuccessMessage(null)
     const res = await login(loginIdentifier, loginPassword)
     if (res.success) {
-      setSuccessMessage('Authentication verified. Welcome back to GAURDIAN Command.')
+      setSuccessMessage('Authentication verified. Welcome back to GUARDIAN Command.')
       setTimeout(() => {
         closeAuthModal()
         setSuccessMessage(null)

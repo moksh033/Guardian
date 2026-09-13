@@ -23,7 +23,7 @@ export const GoogleLogin: React.FC<GoogleLoginProps> = ({ onSuccess }) => {
       if (window.google) {
         const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
         if (!clientId) {
-          console.warn('[GAURDIAN] Google OAuth client ID not configured. Set VITE_GOOGLE_CLIENT_ID in .env');
+          console.warn('[GUARDIAN] Google OAuth client ID not configured. Set VITE_GOOGLE_CLIENT_ID in .env');
           return;
         }
         window.google.accounts.id.initialize({

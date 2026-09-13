@@ -91,7 +91,7 @@ export const KNOWLEDGE_BASE_DATASET: KnowledgeEntry[] = [
     keywords: ['section 91', 'crpc 91', 'bnss 94', 'section 94', 'police notice', 'freezing directive'],
     title: 'Section 91 CrPC & Section 94 BNSS Statutory Notice',
     category: 'legal',
-    response: `⚖️ **Section 91 CrPC (CrPC 1973 § 91) & Section 94 BNSS 2023**:\n\n• **Statutory Power**:\n  - Empowers an Investigating Officer (IO) or Station House Officer (SHO) to summon documents, electronic transaction ledgers, KYC files, and digital evidence from any bank, telecom provider, or payment gateway.\n\n• **Mandatory Bank Compliance**:\n  - Commercial banks receiving an official Section 91 notice must place an immediate lien on flagged downstream mule accounts within 120 minutes.\n\n• **Judicial Admissibility**:\n  - All Section 91 directives dispatched via GAURDIAN include cryptographic SHA-256 Merkle hashes, satisfying Section 65B of the Indian Evidence Act 1872 and Section 63 of the Bharatiya Sakshya Adhiniyam 2023.`,
+    response: `⚖️ **Section 91 CrPC (CrPC 1973 § 91) & Section 94 BNSS 2023**:\n\n• **Statutory Power**:\n  - Empowers an Investigating Officer (IO) or Station House Officer (SHO) to summon documents, electronic transaction ledgers, KYC files, and digital evidence from any bank, telecom provider, or payment gateway.\n\n• **Mandatory Bank Compliance**:\n  - Commercial banks receiving an official Section 91 notice must place an immediate lien on flagged downstream mule accounts within 120 minutes.\n\n• **Judicial Admissibility**:\n  - All Section 91 directives dispatched via GUARDIAN include cryptographic SHA-256 Merkle hashes, satisfying Section 65B of the Indian Evidence Act 1872 and Section 63 of the Bharatiya Sakshya Adhiniyam 2023.`,
   },
   {
     keywords: ['it act', 'section 66', '66c', '66d', 'section 43', 'cyber law', 'hacking law'],
@@ -156,8 +156,8 @@ export const CONVERSATIONAL_DATASET: ConversationalRule[] = [
       /\b(good day)\b/i,
     ],
     responses: [
-      `👋 Hello! Great to connect with you. I am **GAURDIAN Sovereign AI Assistant**.\n\nHow can I help you today? You can ask me anything from day-to-day questions, math problems, and tech advice to cyber fraud support, 1930 reporting, and Indian cyber laws!`,
-      `👋 Hey there! Welcome to the **GAURDIAN Tactical & Citizen Portal**.\n\nI'm here to assist with everyday tasks, answering questions, or helping safeguard against online financial fraud. What's on your mind?`,
+      `👋 Hello! Great to connect with you. I am **GUARDIAN Sovereign AI Assistant**.\n\nHow can I help you today? You can ask me anything from day-to-day questions, math problems, and tech advice to cyber fraud support, 1930 reporting, and Indian cyber laws!`,
+      `👋 Hey there! Welcome to the **GUARDIAN Tactical & Citizen Portal**.\n\nI'm here to assist with everyday tasks, answering questions, or helping safeguard against online financial fraud. What's on your mind?`,
       `🙏 Namaste! I am your AI Assistant, equipped to assist with general everyday questions, legal procedures, software engineering, and national cyber fraud defenses. How are you doing today?`,
     ],
   },
@@ -217,8 +217,8 @@ export const CONVERSATIONAL_DATASET: ConversationalRule[] = [
       /\b(tell me about yourself|are you a robot|are you ai|are you real|are you human)\b/i,
     ],
     responses: [
-      `🤖 **Meet GAURDIAN Sovereign AI Assistant**:\n\nI am an advanced multi-domain intelligence assistant developed for the **GAURDIAN Sovereign Cyber Defense & Tactical Law Enforcement Grid**.\n\n**Here is what I can do for you**:\n1. **Everyday Conversation & Q&A**: Science, general knowledge, math calculations, cooking recipes, productivity tips.\n2. **Cyber Defense & Citizen Care**: Instant guidance for UPI scams, fake investment fraud, digital arrest threats, and 1930 portal reporting.\n3. **Statutory & Legal Analysis**: Section 91 CrPC, Section 94 BNSS, IT Act 2000, and RBI Zero-Liability directives.\n4. **Forensic Tech**: Graph Neural Networks (GNN), multi-hop mule tracing, and ATM spatial-temporal intercept logic.\n\nFeel free to ask me anything!`,
-      `🛡️ I am the **GAURDIAN Sovereign AI Assistant**, paired with this cutting-edge platform to make digital safety and law enforcement accessible, intelligent, and immediate. Ask me about everyday life, mathematics, coding, or cybersecurity procedures!`,
+      `🤖 **Meet GUARDIAN Sovereign AI Assistant**:\n\nI am an advanced multi-domain intelligence assistant developed for the **GUARDIAN Sovereign Cyber Defense & Tactical Law Enforcement Grid**.\n\n**Here is what I can do for you**:\n1. **Everyday Conversation & Q&A**: Science, general knowledge, math calculations, cooking recipes, productivity tips.\n2. **Cyber Defense & Citizen Care**: Instant guidance for UPI scams, fake investment fraud, digital arrest threats, and 1930 portal reporting.\n3. **Statutory & Legal Analysis**: Section 91 CrPC, Section 94 BNSS, IT Act 2000, and RBI Zero-Liability directives.\n4. **Forensic Tech**: Graph Neural Networks (GNN), multi-hop mule tracing, and ATM spatial-temporal intercept logic.\n\nFeel free to ask me anything!`,
+      `🛡️ I am the **GUARDIAN Sovereign AI Assistant**, paired with this cutting-edge platform to make digital safety and law enforcement accessible, intelligent, and immediate. Ask me about everyday life, mathematics, coding, or cybersecurity procedures!`,
     ],
   },
 
@@ -297,18 +297,123 @@ export const CONVERSATIONAL_DATASET: ConversationalRule[] = [
       `🚨 **CRITICAL EMERGENCY PROTOCOL (FIRST 2 HOURS MATTER)**:\n\n1. **Dial 1930 Immediately**: Call National Cyber Crime Helpline **1930** (Govt. of India) to request an immediate freeze on the recipient bank account/VPA before cash is withdrawn.\n2. **File an Official Incident**: Use our **Incident Intake Portal** (click "File Emergency Report" in the top bar) to automatically generate case documentation.\n3. **Notify Your Bank**: Call your bank's 24/7 fraud hotline to block cards, disable net-banking, and request a chargeback under RBI Zero Liability rules.\n4. **If facing Extortion/Blackmail**: Do NOT transfer any money. Take screenshots with visible URLs/usernames, block the caller, and file under "Cyber Blackmail / Extortion" at [cybercrime.gov.in](https://cybercrime.gov.in).\n5. **Preserve Evidence**: Save screenshots of debit SMS, transaction UTR numbers, suspect UPI IDs, and chats.\n\n*Would you like me to walk you through filing a report right now?*`,
     ],
   },
+  // 10. Hinglish Greetings & Conversational
+  {
+    patterns: [
+      /\b(kaise ho|kya haal hai|kya hal hai|kya chal raha hai|sab theek|sab kaisa|kya chal rha)\b/i,
+      /\b(kya kar rahe ho|kya kar rhe ho|kya chal rha hai)\b/i,
+    ],
+    responses: [
+      `🙏 **Namaste!** Main badhiya hoon, aap bataiye aap kaise hain?\n\nAap mujhse online safety, 1930 reporting, UPI scams se bachav ya daily life ke kisi bhi topic par sawal pooch sakte hain. Main English aur Hinglish dono me fluent hoon!`,
+      `😊 **Sab badhiya hai!** Main aapki madad ke liye 24x7 taiyar hoon. Aaj aapka din kaisa ja raha hai? Koi sawal ya help chahiye toh bejhijhak batayein!`,
+    ],
+  },
+  {
+    patterns: [
+      /\b(tum kaun ho|aap kaun ho|apne baare me batao|tum kya kar sakte ho|aap kya kar sakte ho|kya kaam karte ho)\b/i,
+      /\b(kya help kar sakte ho|kya madad kar sakte ho)\b/i,
+    ],
+    responses: [
+      `🤖 **Namaste! Main GUARDIAN Sovereign AI Assistant hoon**:\n\nMain aapka 24x7 digital rakshak aur smart intelligence partner hoon!\n\n**Main aapki in cheezon me madad kar sakta hoon**:\n1. 🚨 **Cyber Fraud & Emergency Action**: Agar paise cut gaye hain, toh 1930 reporting aur bank account freeze karwane ka step-by-step guidance.\n2. 🛡️ **Scam Alert & Prevention**: Digital arrest scams, fake police calls, lottery fraud, aur fake QR code se bachne ke tips.\n3. ⚖️ **Indian Cyber Laws**: Section 91 CrPC, Section 94 BNSS, aur RBI ke Zero-Liability refund rules.\n4. 💡 **Rozmara ke Sawal**: Maths calculation, coding help, general knowledge aur daily life productivity advice.\n\nAap mujhse English ya Hinglish me kuch bhi pooch sakte hain!`,
+    ],
+  },
+  {
+    patterns: [
+      /\b(shukriya|dhanyawad|bohot shukriya|dhanyavaad|thank you bhai|thanks bhai)\b/i,
+    ],
+    responses: [
+      `🙏 **Aapka bohot swagat hai!** Surakshit rahiye aur kisi bhi anjaan link ya OTP se savdhan rahiye. Kabhi bhi madad chahiye ho toh main yahan hoon!`,
+      `✨ **Koi baat nahi, ye mera farz hai!** Hamesha satark rahiye aur cyber safety ka dhyan rakhiye. Have a great day!`,
+    ],
+  },
+  {
+    patterns: [
+      /\b(alvida|chalta hoon|chalti hoon|chal bye|phir milenge|bye bhai|tata)\b/i,
+    ],
+    responses: [
+      `👋 **Alvida! Apna dhyan rakhiyega.** Yaad rakhein: apna OTP, password ya UPI PIN kisi ke sath share na karein. Phir milte hain!`,
+      `✨ **Take care!** Kabhi bhi cyber security ya general assistance ki zaroorat ho toh wapas zaroor aayiye!`,
+    ],
+  },
+
+  // 11. Hinglish Cyber Emergency & Scams
+  {
+    patterns: [
+      /\b(paise kat gaye|paise cut gaye|fraud ho gaya|scam ho gaya|paise chori|loot liya|unauthorized transaction|account se paise nikle|paise wapas|paise fas gaye)\b/i,
+      /\b(mere sath fraud hua|paise chale gaye|paise doob gaye|mere paise wapas kaise|dhokha ho gaya)\b/i,
+    ],
+    responses: [
+      `🚨 **URGENT EMERGENCY PROTOCOL (Agla 1 Ghanta Sabse Zaroori Hai)**:\n\n1. **1930 Par Turant Call Karein**:\n   • National Cyber Crime Helpline **1930** (Govt. of India) par foran call karein.\n   • Unhe Transaction UTR/Ref number, apna bank account aur fraudster ka account/UPI batayein taaki aage ka paisa freeze ho sake.\n\n2. **Apne Bank Helpline Par Call Karke Account / Card Block Karein**:\n   • SBI: 1800 1234 / 1800 11 1109\n   • HDFC: 1800 202 6161\n   • ICICI: 1800 1080\n   • Axis: 1860 419 5555\n\n3. **Online Complaint File Karein**:\n   • [cybercrime.gov.in](https://cybercrime.gov.in) par ya humare platform ke **File Emergency Report** button par click karke turant report darj karein.\n\n4. **Sabhi Saboot (Evidence) Save Karein**:\n   • SMS, WhatsApp chat, payment screenshot, aur caller number ka screenshot le lein.\n\n5. **Dhyan Dein**:\n   • Dobara kisi call par vishwas na karein jo bole ki 'itne paise aur do toh pehle wale wapas milenge' — ye second stage fraud hota hai!`,
+    ],
+  },
+  {
+    patterns: [
+      /\b(digital arrest|police ka call|cbi ka call|customs call|skype call police|arrest warrant|video call arrest)\b/i,
+    ],
+    responses: [
+      `⚠️ **ALERT: Digital Arrest 100% FRAUD hai! Bilkul na darein!**\n\n1. **Sachchai**:\n   • Bharat ke kanoon (CrPC ya BNS) me **'Digital Arrest' jaisa koi kanoon nahi hai**!\n   • Police, CBI, ED ya Customs kabhi bhi video call (WhatsApp/Skype) par arrest nahi karti aur na hi camera par baithe rehne ko bolti hai.\n\n2. **Wo kya karte hain?**:\n   • Fake uniform, fake ID card, fake Supreme Court/CBI letterhead dikha kar daraate hain ki aapke naam par parcel me drugs ya illegal samaan pakda gaya hai.\n   • Fir 'Verification Account' ya 'RBI Account' ke naam par aapke saare paise transfer karwa lete hain.\n\n3. **Aapko kya karna hai?**:\n   • **Call turant disconnect karein** aur number block karein.\n   • Koi paisa transfer na karein.\n   • Number ko **1930** aur **Chakshu portal** (sancharsaathi.gov.in) par report karein!`,
+    ],
+  },
+  {
+    patterns: [
+      /\b(upi pin|qr code se paise|qr code scan|fake screenshot|paise lene ke liye pin|gpay scam|phonepe scam)\b/i,
+    ],
+    responses: [
+      `🛡️ **UPI KA SABSE BADA GOLDEN RULE**:\n\n👉 **Paise LENE (Receive karne) ke liye KABHI BHI UPI PIN nahi daalna hota!**\n\n• **Scam Trick**:\n  - Fraudster bolta hai: 'Maine QR code bheja hai, scan karke apna PIN daalo toh aapko ₹5,000 mil jayenge'.\n  - Jaise hi aap PIN daalte hain, aapke account se paise **KATT** jaate hain!\n\n• **Ek aur fraud: Fake Screenshot**:\n  - Scammer fake app se 'Paid successfully' ka animation dikhata hai. Hamesha apne bank ke official SMS aur balance ko check karein.\n\n• **Yaad rakhein**: PIN daalna sirf paise BHEJNE ke liye hota hai!`,
+    ],
+  },
+  {
+    patterns: [
+      /\b(otp share|otp du ya nahi|bank call otp|sim block|kyc update call|anydesk|teamviewer)\b/i,
+    ],
+    responses: [
+      `🔒 **KISI BHI HAALAT ME APNA OTP YA SCREEN SHARE NA KAREIN!**\n\n1. **Koi bhi Bank OTP nahi maangta**:\n   • Na SBI, na HDFC, na RBI aur na Police — koi bhi genuine officer aapse OTP, CVV ya NetBanking password nahi maangta.\n\n2. **AnyDesk / TeamViewer / RustDesk Download Na Karein**:\n   • Scammer bolega 'KYC update karne ke liye ye app download karo' — isse wo aapke phone ki screen dekh kar OTP chura lete hain.\n\n3. **SIM Expiry / Electricity Bill SMS**:\n   • 'Aapka bijli connection cut jayega' ya 'SIM 24 ghante me block hogi' wale SMS 100% fake hote hain. Diye gaye unverified number par call na karein.`,
+    ],
+  },
+  {
+    patterns: [
+      /\b(1930 kya hai|1930 helpline number|cyber crime number|1930 pe call kaise kare|1930 portal)\b/i,
+    ],
+    responses: [
+      `📞 **1930 National Cyber Crime Reporting Helpline (Govt. of India)**:\n\n• **Ye kya hai?**:\n  - Ministry of Home Affairs (MHA) aur Indian Cybercrime Coordination Centre (I4C) ki 24x7 dedicated emergency financial fraud helpline hai.\n\n• **Kaise call karein?**:\n  - Apne phone se direct **1930** dial karein.\n  - Language select karein (Hindi, English, ya Regional).\n  - Operator ko transaction time, amount, apna bank aur fraudster ka UPI ID/account number batayein.\n\n• **Golden Window**:\n  - Fraud ke pehle 6 se 60 minute me call karne par bank instant hold laga deta hai aur paise wapas milne ke chances 90%+ hote hain!`,
+    ],
+  },
 ]
 
 /**
- * Universal Intelligent Question Answering & Reasoning Engine
- * Capable of answering ANY question using semantic dataset matching,
- * day-to-day knowledge reasoning, math calculations, code generation, and empathetic dialogue.
+ * Helper to detect if a query is in Hinglish or Romanized Hindi
  */
-export function answerGeneralOrSpecificQuestion(query: string): string {
+export function isHinglishQuery(text: string): boolean {
+  const lower = text.toLowerCase()
+  const hinglishKeywords = [
+    'kya', 'hai', 'kaise', 'mere', 'paise', 'batao', 'karo', 'nahi', 'nahin', 'aaya',
+    'gaya', 'gaye', 'kat', 'cut', 'bache', 'scam', 'chahiye', 'chal', 'raha', 'rhe',
+    'hoon', 'hu', 'aap', 'tum', 'bhai', 'kripya', 'dhanyawad', 'shukriya', 'namaste',
+    'theek', 'thik', 'badhiya', 'matlab', 'bolo', 'kaun', 'karu', 'kare', 'hota',
+    'hote', 'wali', 'wala', 'kisme', 'kaha', 'kyu', 'kyun', 'karna', 'dena', 'lena',
+    'bataiye', 'rakhein', 'rakho', 'daalein', 'daalna', 'jao', 'aao', 'dein', 'karein'
+  ]
+  const words = lower.split(/[^a-zA-Z0-9]+/)
+  let matches = 0
+  for (const w of words) {
+    if (hinglishKeywords.includes(w)) matches++
+  }
+  return matches >= 1 || lower.includes('kaise') || lower.includes('kya') || lower.includes('paise')
+}
+
+/**
+ * Universal Intelligent Question Answering & Reasoning Engine
+ * Capable of answering in both English and natural Hinglish.
+ */
+export function answerGeneralOrSpecificQuestion(
+  query: string,
+  preferredLanguage: 'auto' | 'en' | 'hinglish' = 'auto'
+): string {
   const q = query.trim()
   const lowerQ = q.toLowerCase()
+  const isHinglish = preferredLanguage === 'hinglish' || (preferredLanguage === 'auto' && isHinglishQuery(q))
 
-  // 1. Check dedicated conversational dataset first for natural dialogue
+  // 1. Check conversational dataset first
   for (const item of CONVERSATIONAL_DATASET) {
     for (const pattern of item.patterns) {
       if (pattern.test(lowerQ)) {
@@ -319,16 +424,18 @@ export function answerGeneralOrSpecificQuestion(query: string): string {
   }
 
   // 2. Math calculation detection (e.g., "what is 25 * 4", "calculate 1500 * 0.18")
-  const mathMatch = lowerQ.match(/^(?:what is|calculate|solve|evaluate)?\s*([\d\s+\-*/^().%]+)\s*$/i)
+  const mathMatch = lowerQ.match(/^(?:what is|calculate|solve|evaluate|kitna hoga|hisaab)?\s*([\d\s+\-*/^().%]+)\s*$/i)
   if (mathMatch && mathMatch[1] && /[+\-*/]/.test(mathMatch[1])) {
     try {
-      // Safe sanitized arithmetic evaluator
       const sanitized = mathMatch[1].replace(/[^0-9+\-*/.()]/g, '')
       const result = Function(`'use strict'; return (${sanitized})`)()
       if (typeof result === 'number' && !isNaN(result)) {
+        if (isHinglish) {
+          return `🧮 **Ganit Calculation Result (उत्तर)**:\n\n$$\\mathbf{${mathMatch[1].trim()} = ${result.toLocaleString('en-IN')}}$$\n\n• Step: Expression ko standard mathematical BODMAS rule ke mutabiq solve kiya gaya.`
+        }
         return `🧮 **Calculation Result**:\n\n$$\\mathbf{${mathMatch[1].trim()} = ${result.toLocaleString('en-IN')}}$$\n\n• Step: Evaluated arithmetic expression with standard operator precedence.`
       }
-    } catch { /* arithmetic eval failed, fall through to knowledge base */ }
+    } catch { /* fall through */ }
   }
 
   // 3. Exact/Partial match against curated knowledge dataset
@@ -353,16 +460,27 @@ export function answerGeneralOrSpecificQuestion(query: string): string {
   }
 
   // 4. Time, date, weather inquiries
-  if (lowerQ.includes('weather') || lowerQ.includes('climate') || lowerQ.includes('rain')) {
+  if (lowerQ.includes('weather') || lowerQ.includes('climate') || lowerQ.includes('rain') || lowerQ.includes('mausam')) {
+    if (isHinglish) {
+      return `🌦️ **Mausam (Weather) & Cyber Alert**:\n\n• Live local weather radar dekhne ke liye aap India Meteorological Department (IMD) ki official website [mausam.imd.gov.in](https://mausam.imd.gov.in) check kar sakte hain.\n• **Cyber Alert**: Baarish ke mausam me bijli bill disconnection wale fake SMS bohot aate hain. Kisi bhi unverified link par click karke bill pay na karein!`
+    }
     return `🌦️ **Meteorology & Atmosphere Knowledge**:\n\n• Weather is driven by atmospheric air pressure, temperature differentials, and moisture gradients.\n• For local real-time radar and forecasts, you can check the India Meteorological Department (IMD) at [mausam.imd.gov.in](https://mausam.imd.gov.in).\n• *Tip*: During monsoon seasons, cyber frauds surge through fake electricity disconnection SMS alerts. Never click links in unverified utility SMS messages!`
   }
 
-  if (lowerQ.includes('time') || lowerQ.includes('date') || lowerQ.includes('today')) {
+  if (lowerQ.includes('time') || lowerQ.includes('date') || lowerQ.includes('today') || lowerQ.includes('samay') || lowerQ.includes('waqt')) {
     const now = new Date()
+    if (isHinglish) {
+      return `🕒 **Current Operational System Samay (Time)**:\n\n• **Local Time**: ${now.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} IST\n• **Status**: Sabhi GUARDIAN Cyber Grid Nodes aur 1930 API channels smoothly active hain.`
+    }
     return `🕒 **Current Operational System Time**:\n\n• **Local Time**: ${now.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} IST\n• **UTC Timestamp**: ${now.toISOString()}\n• **Status**: All CyberCell Grid Nodes & National Nodal API channels operating with nominal sub-second latency.`
   }
 
   // 5. Intelligent Dynamic Fallback
+  if (isHinglish) {
+    return `💡 **GUARDIAN AI Sahayata: "${q}" par jankari**:\n\n1. **Aapka Sawal**:\n   • Aapne *${q}* ke baare me poocha hai.\n\n2. **Zaroori Salah (Guidance)**:\n   • Agar ye kisi **online fraud, scam ya paise katne** ke baare me hai, toh bina deri kiye **1930** par call karein ya bank app me transaction dispute daalein.\n   • Kabhi bhi anjaan vyakti ke kehne par remote app (AnyDesk/TeamViewer) download na karein aur na hi UPI PIN share karein.\n   • Agar ye koi **general ya technical sawal** hai, toh aap detail me pooch sakte hain, main poori madad karunga!\n\n3. **Kya aapko koi specific step, formula ya legal section samajhna hai?** Mujhe zaroor batayein!`
+  }
+
   return `💡 **Sovereign AI Knowledge Synthesis on "${q}"**:\n\nBased on multi-domain telemetry and generalized reasoning:\n\n1. **Core Concept & Overview**:\n   • Your inquiry regarding *${q}* touches upon general domain principles and operational protocols.\n\n2. **Actionable Insights**:\n   • If this relates to **digital safety or cyber fraud**, ensure zero sharing of OTPs/PINs and report immediately via **1930** or [cybercrime.gov.in](https://cybercrime.gov.in).\n   • If this is a **technical or analytical topic**, break the problem down into fundamental components and verify system inputs.\n   • If this is a **day-to-day query**, structured habits, active prioritization, and clear execution yield the best results.\n\n3. **Suggested Next Steps**:\n   • Would you like a step-by-step tutorial, legal citation, code example, or specific calculation on this topic? Let me know!`
 }
+
 

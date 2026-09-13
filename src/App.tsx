@@ -48,12 +48,12 @@ export const App: React.FC = () => {
   }, [theme])
 
   return (
-    <div className="min-h-[100dvh] bg-transparent text-white flex flex-col antialiased selection:bg-[#2b5945] selection:text-white transition-colors duration-200 relative overflow-x-hidden">
+    <div className="min-h-[100dvh] bg-transparent text-text-primary dark:text-white flex flex-col antialiased selection:bg-[#2b5945] selection:text-white transition-colors duration-200 relative overflow-x-hidden">
       {/* GhostFibers WebGL dynamic ambient background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <GhostFibers
-          lineColor="#140E35"
-          glowColor="#3437A0"
+          lineColor={theme === 'light' ? '#64748b' : '#140E35'}
+          glowColor={theme === 'light' ? '#38bdf8' : '#3437A0'}
           speed={0.2}
           scale={2}
           rotation={0}
@@ -70,20 +70,20 @@ export const App: React.FC = () => {
           lineSpacing={2}
           lineSharpness={16}
           glowFalloff={10}
-          glowIntensity={1.6}
-          brightness={2}
+          glowIntensity={theme === 'light' ? 1.2 : 1.6}
+          brightness={theme === 'light' ? 1.5 : 2}
           blueBoost={1.25}
           vignette={0.8}
           grain={0.05}
           dpr={1}
-          lightMode={false}
+          lightMode={theme === 'light'}
           fps={60}
           paused={false}
         />
       </div>
 
-      {/* Acrylic backdrop for high contrast text readability */}
-      <div className="fixed inset-0 bg-black/20 backdrop-blur-[8px] pointer-events-none z-0" />
+      {/* More translucent acrylic backdrop for a lighter feel while maintaining text readability */}
+      <div className="fixed inset-0 bg-black/5 dark:bg-black/8 backdrop-blur-[2px] pointer-events-none z-0 transition-colors" />
 
       <div className="relative z-10 flex flex-col min-h-screen">
         <GlobalShortcuts />

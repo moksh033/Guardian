@@ -33,14 +33,18 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+:root,
+html.dark {
   --background: #1e2124;
   --surface: #000000;
   --surface-card: #121417;
+  --surface-elevated: #16181c;
   --surface-hover: #2f3234;
+  --surface-active: #383b3e;
   --text-primary: #ffffff;
   --text-secondary: #c0c9c2;
   --text-muted: #9b9b9b;
+  --text-faint: #636363;
   --border-color: #636363;
   --border-subtle: rgba(255, 255, 255, 0.12);
   --accent-color: #2b5945;
@@ -50,20 +54,178 @@
 }
 
 html.light {
-  --background: #f4f6f9;
+  --background: #f8fafc;
   --surface: #ffffff;
   --surface-card: #ffffff;
+  --surface-elevated: #f1f5f9;
   --surface-hover: #f1f5f9;
+  --surface-active: #e2e8f0;
   --text-primary: #0f172a;
   --text-secondary: #334155;
   --text-muted: #64748b;
-  --border-color: #e2e8f0;
+  --text-faint: #94a3b8;
+  --border-color: #cbd5e1;
   --border-subtle: rgba(0, 0, 0, 0.08);
   --accent-color: #166534;
   --accent-hover: #14532d;
   --accent-gold: #b45309;
   --danger-color: #b91c1c;
 }
+
+/* Light mode utility overrides for legacy dark-hardcoded utility elements */
+html.light body {
+  background-color: var(--background) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Main page background */
+html.light .min-h-screen {
+  background-color: var(--background) !important;
+  color: var(--text-primary) !important;
+}
+
+html.light header {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(203, 213, 225, 0.7) !important;
+}
+
+/* All black/dark backgrounds → light surfaces */
+html.light .bg-black\/30,
+html.light .bg-black\/40,
+html.light .bg-black\/25,
+html.light .bg-black\/20,
+html.light .bg-black\/18,
+html.light .bg-black\/12,
+html.light .bg-black\/10,
+html.light .bg-black\/8,
+html.light .bg-black\/5 {
+  background-color: rgba(241, 245, 249, 0.8) !important;
+  border-color: rgba(203, 213, 225, 0.8) !important;
+}
+
+/* Black with backdrop-blur cards → white glass in light */
+html.light .bg-black\/30.backdrop-blur-md,
+html.light .bg-black\/25.backdrop-blur-md {
+  background-color: rgba(255, 255, 255, 0.75) !important;
+}
+
+html.light .bg-\[\#121417\]\/80,
+html.light .bg-\[\#121417\]\/50,
+html.light .bg-\[\#121417\]\/40,
+html.light .bg-\[\#121417\]\/35,
+html.light .bg-\[\#121417\]\/30,
+html.light .bg-\[\#121417\]\/25,
+html.light .bg-\[\#121417\] {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border-color: #cbd5e1 !important;
+}
+
+html.light .bg-\[\#0c0e11\],
+html.light .bg-\[\#090b0d\],
+html.light .bg-\[\#16181c\] {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Transparent backgrounds in light mode get a subtle fill */
+html.light .bg-transparent {
+  background-color: transparent !important;
+}
+
+html.light .text-white {
+  color: #0f172a !important;
+}
+
+html.light .text-\[\#c0c9c2\] {
+  color: #334155 !important;
+}
+
+html.light .text-\[\#9b9b9b\] {
+  color: #64748b !important;
+}
+
+html.light .text-\[\#636363\] {
+  color: #94a3b8 !important;
+}
+
+html.light .border-\[\#636363\],
+html.light .border-\[\#636363\]\/40,
+html.light .border-\[\#636363\]\/30,
+html.light .border-\[\#636363\]\/50,
+html.light .border-\[\#636363\]\/60,
+html.light .border-\[\#636363\]\/25 {
+  border-color: #cbd5e1 !important;
+}
+
+html.light .divide-\[\#636363\]\/30 > * + * {
+  border-color: #cbd5e1 !important;
+}
+
+html.light .border-\[\#636363\]\/25 {
+  border-color: #e2e8f0 !important;
+}
+
+html.light .btn-primary {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+  border-color: #0f172a !important;
+}
+html.light .btn-primary:hover {
+  background-color: #1e293b !important;
+  color: #ffffff !important;
+}
+
+/* Active nav items & pills in light mode */
+html.light .bg-white.text-\[\#121417\] {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+}
+
+/* Ensure buttons with explicit green/dark backgrounds retain readable text in light mode */
+html.light button.bg-\[\#2b5945\],
+html.light .bg-\[\#2b5945\] {
+  color: #ffffff !important;
+}
+html.light button.bg-\[\#121417\] {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+}
+html.light .text-\[\#38d39f\] {
+  color: #059669 !important;
+}
+html.light .text-\[\#a0d1b8\] {
+  color: #15803d !important;
+}
+html.light .text-\[\#fae0a6\] {
+  color: #b45309 !important;
+}
+
+/* Badge backgrounds in light mode */
+html.light .bg-\[\#2b5945\]\/20 {
+  background-color: rgba(22, 101, 52, 0.12) !important;
+}
+
+/* Shadow overlays/dividers in light mode */
+html.light .border-l.border-\[\#636363\]\/30 {
+  border-color: #e2e8f0 !important;
+}
+
+/* Light mode scrollbars */
+html.light ::-webkit-scrollbar-track {
+  background: #f1f5f9 !important;
+}
+html.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1 !important;
+}
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8 !important;
+}
+
+/* White/75 element in light mode (the CTA left panel) */
+html.light .bg-white\/75 {
+  background-color: rgba(248, 250, 252, 0.95) !important;
+}
+
 
 @layer base {
   * {

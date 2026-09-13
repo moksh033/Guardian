@@ -1,5 +1,5 @@
 /**
- * API client module for GAURDIAN platform.
+ * API client module for GUARDIAN platform.
  * Supports dual-mode: Live FastAPI backend (D:\MokshSIH) and offline high-fidelity telemetry simulation.
  */
 
@@ -519,7 +519,7 @@ class ApiService {
       }
     }
     return {
-      response: `[GAURDIAN_CORE] Multi-hop graph analysis complete. 3 layer mule ring detected originating from victim account ending in *4829. 8 downstream accounts flagged with risk coefficient > 0.85. Layer 2 funds dispersed across Axis, HDFC, and Canara Bank VPAs.`,
+      response: `[GUARDIAN_CORE] Multi-hop graph analysis complete. 3 layer mule ring detected originating from victim account ending in *4829. 8 downstream accounts flagged with risk coefficient > 0.85. Layer 2 funds dispersed across Axis, HDFC, and Canara Bank VPAs.`,
       latency_ms: 145,
     }
   }
@@ -575,7 +575,7 @@ class ApiService {
           user: {
             user_id: 'usr_moksh_admin_001',
             username: 'Moksh',
-            email: 'moksh@gaurdian.gov.in',
+            email: 'moksh@guardian.gov.in',
             role: 'ADMIN',
             station: 'Central Cyber Defense Directorate',
             badge_number: 'DIR-MOKSH-01',
@@ -588,7 +588,7 @@ class ApiService {
           user: {
             user_id: 'usr_moksh_admin_001',
             username: 'Moksh',
-            email: 'admin@gaurdian.gov.in',
+            email: 'admin@guardian.gov.in',
             role: 'ADMIN',
             station: 'Central Cyber Defense Directorate',
             badge_number: 'DIR-MOKSH-01',
@@ -601,7 +601,7 @@ class ApiService {
           user: {
             user_id: 'usr_vikram_insp_002',
             username: 'inspector_vikram',
-            email: 'vikram@gaurdian.gov.in',
+            email: 'vikram@guardian.gov.in',
             role: 'INSPECTOR',
             station: 'Indiranagar Tactical Cyber Cell',
             badge_number: 'IN-KA-BLR-0847',
@@ -613,7 +613,7 @@ class ApiService {
           user: {
             user_id: 'usr_vikram_insp_002',
             username: 'inspector_vikram',
-            email: 'vikram@gaurdian.gov.in',
+            email: 'vikram@guardian.gov.in',
             role: 'INSPECTOR',
             station: 'Indiranagar Tactical Cyber Cell',
             badge_number: 'IN-KA-BLR-0847',
@@ -625,7 +625,7 @@ class ApiService {
           user: {
             user_id: 'usr_chetan_const_003',
             username: 'patrol_chetan',
-            email: 'chetan@gaurdian.gov.in',
+            email: 'chetan@guardian.gov.in',
             role: 'CONSTABLE',
             station: 'Quick Response Intercept Unit',
             badge_number: 'PATROL-DELTA-4',
@@ -637,7 +637,7 @@ class ApiService {
           user: {
             user_id: 'usr_chetan_const_003',
             username: 'patrol_chetan',
-            email: 'chetan@gaurdian.gov.in',
+            email: 'chetan@guardian.gov.in',
             role: 'CONSTABLE',
             station: 'Quick Response Intercept Unit',
             badge_number: 'PATROL-DELTA-4',
@@ -717,7 +717,7 @@ class ApiService {
       const dynamicUser = {
         user_id: `usr_session_${Date.now()}`,
         username: rawName,
-        email: rawName.includes('@') ? rawName : `${rawName.toLowerCase()}@gaurdian.gov.in`,
+        email: rawName.includes('@') ? rawName : `${rawName.toLowerCase()}@guardian.gov.in`,
         role: isAdmin ? 'ADMIN' : 'INSPECTOR',
         station: 'Tactical Cyber Command Center',
         badge_number: `CYBER-${Math.floor(1000 + Math.random() * 9000)}`,
@@ -807,7 +807,7 @@ class ApiService {
       }
 
       // Sovereign Google SSO Session Fallback
-      const email = payload.email || 'officer.google@gaurdian.gov.in'
+      const email = payload.email || 'officer.google@guardian.gov.in'
       const username = payload.name || email.split('@')[0] || 'Google Officer'
       return {
         access_token: `mock_jwt_google_${Date.now()}`,

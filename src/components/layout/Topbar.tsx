@@ -88,17 +88,17 @@ export function Topbar() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-[1600] bg-black/30 backdrop-blur-md border-b border-[#636363]/40">
+      <header className="fixed top-0 left-0 right-0 z-[1600] bg-black/20 dark:bg-black/20 bg-white/70 backdrop-blur-md border-b border-[#636363]/25 dark:border-[#636363]/25 border-slate-200 transition-colors">
         <div className="mx-auto max-w-[1440px] px-4 md:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Brand Logo - Palantir Style */}
-            <Link to="/" className="flex items-center gap-3 group" aria-label="GAURDIAN Home">
+            <Link to="/" className="flex items-center gap-3 group" aria-label="GUARDIAN Home">
               <div className="w-8 h-8 rounded-sm bg-white flex items-center justify-center text-black font-bold text-xs tracking-tighter group-hover:bg-[#2b5945] group-hover:text-white transition-colors duration-200">
                 GD
               </div>
               <div className="flex flex-col">
                 <span className="font-sans font-bold text-sm text-white tracking-widest leading-snug">
-                  GAURDIAN
+                  GUARDIAN
                 </span>
                 <span className="text-[11px] font-mono text-[#9b9b9b] tracking-wider leading-snug">
                   SOVEREIGN DEFENSE
@@ -130,7 +130,7 @@ export function Topbar() {
             {/* Right Side Actions */}
             <div className="flex items-center gap-2.5">
               {/* Live Status Pill */}
-              <div className="hidden sm:flex items-center gap-2 px-3 py-1 bg-[#121417] border border-[#636363]/50 rounded-btn text-mono-xs text-[#c0c9c2]">
+              <div className="hidden sm:flex items-center gap-2 px-3 py-1 bg-[#121417]/40 backdrop-blur-sm border border-[#636363]/40 rounded-btn text-mono-xs text-[#c0c9c2]">
                 <span className={cn('w-1.5 h-1.5 rounded-full', backendStatus.connected ? 'bg-[#38d39f] shadow-[0_0_8px_#38d39f]' : 'bg-[#fae0a6]')} />
                 <span className="font-mono text-[11px]">
                   {backendStatus.connected ? `API: LIVE (${backendStatus.latency}ms)` : `GRID: SIM (${backendStatus.latency}ms)`}
@@ -140,7 +140,7 @@ export function Topbar() {
               {/* Primary "File Report" CTA button */}
               <Link
                 to="/report"
-                className="hidden md:inline-flex items-center justify-center bg-white text-[#121417] hover:bg-black/30 backdrop-blur-md hover:text-white border border-white font-sans font-semibold text-xs px-4 py-2 rounded-btn transition-all duration-200 active:scale-[0.98]"
+                className="hidden md:inline-flex items-center justify-center bg-white text-[#121417] hover:bg-white/90 border border-white font-sans font-semibold text-xs px-4 py-2 rounded-btn transition-all duration-200 active:scale-[0.98] shadow-sm"
               >
                 File Report
               </Link>
@@ -148,7 +148,7 @@ export function Topbar() {
               {/* Search Button (Square Palantir Box) */}
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="w-9 h-9 flex items-center justify-center rounded-btn bg-[#121417] border border-[#636363] text-[#c0c9c2] hover:text-white hover:border-white transition-colors"
+                className="w-9 h-9 flex items-center justify-center rounded-btn bg-white dark:bg-[#121417]/60 border border-slate-300 dark:border-[#636363]/60 text-slate-700 dark:text-[#c0c9c2] hover:text-slate-950 dark:hover:text-white hover:border-slate-800 dark:hover:border-white transition-colors shadow-sm"
                 aria-label="Open Command Palette (⌘K)"
                 title="Search / Command Palette (⌘K)"
               >
@@ -277,7 +277,7 @@ export function Topbar() {
                       to="/"
                       className="text-2xl font-bold font-sans text-white hover:text-[#2b5945] transition-colors flex items-center justify-between"
                     >
-                      GAURDIAN Gateway
+                      GUARDIAN Gateway
                       <ArrowUpRight className="w-5 h-5 text-[#9b9b9b]" />
                     </Link>
                     <p className="text-xs text-[#9b9b9b] mt-1">National financial cyber defense grid</p>
@@ -413,7 +413,7 @@ export function Topbar() {
 
                 <div className="pt-8 border-t border-[#636363]/30 flex items-center justify-between">
                   <div className="text-[11px] font-mono text-[#9b9b9b] space-y-1">
-                    <p>© 2026 GAURDIAN / CHOCO DEFENSE</p>
+                    <p>© 2026 GUARDIAN / CHOCO DEFENSE</p>
                     <p>Designed on Palantir Architectural Principles</p>
                   </div>
                   <ThemeToggle showLabel />
